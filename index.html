@@ -115,7 +115,43 @@
     {n:16, start:[2026,11,7], phase:'GĐC · Tổng ôn', pc:'var(--accent-soft)', ptc:'var(--accent)', topic:'Viết lại topic yếu + luyện đọc đoạn văn', unit:null, hsk:'Bài 25–26 / ôn tổng', hyq:17, listen:'Q2 Bài 24+25 (hết bài)', zh:'Ôn tổng chương trình', writeTime:'90p', read:true},
     {n:17, start:[2026,11,14], phase:'Tuần thi cuối kỳ', pc:'var(--accent2-soft)', ptc:'var(--accent2)', topic:'Mô phỏng thi + nghỉ ngơi', unit:null, hsk:'Tạm dừng', hyq:0, listen:'Ôn nghe đề cũ', zh:'—', writeTime:'90p', exam:true}
   ];
+<!-- CHÈN THƯ VIỆN PHÁO HOA VÀO CUỐI FILE -->
+<script src="https://jsdelivr.net"></script>
+<script>
+(function() {
+  // Hàm bắn pháo hoa xịn từ 2 góc màn hình
+  function xuanPhaoHoa() {
+    var duration = 3 * 1000;
+    var end = Date.now() + duration;
+    (function frame() {
+      confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.8 } });
+      confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.8 } });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    }());
+  }
 
+  // Theo dõi thanh tiến độ đổi màu/đổi số để tự động bắn pháo hoa khi đạt 100%
+  var targetPct = document.getElementById('ov-pct');
+  if (targetPct) {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (targetPct.innerText === '100%') {
+          xuanPhaoHoa();
+        }
+      });
+    });
+    observer.observe(targetPct, { childList: true, characterData: true, subtree: true });
+  }
+
+  // Gắn pháo hoa khi bấm nút Đặt lại tiến độ (để test thử)
+  var resetBtn = document.getElementById('reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function() {
+      setTimeout(xuanPhaoHoa, 200);
+    });
+  }
+})();
+</script>
   var KEY='hanStudyPlan_v1';
   var state={};
   try{ state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ state={}; }
