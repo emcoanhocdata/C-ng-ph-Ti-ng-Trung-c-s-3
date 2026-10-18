@@ -1,0 +1,260 @@
+<html style="margin:0;padding:0;">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+(function(){
+  var s=document.createElement('style');
+  s.textContent=':root{--bg:#faf9f4;--card:#ffffff;--text:#0f172a;--muted:#64748b;--accent:#297a2e;--accent-soft:rgba(41,122,46,.14);--accent2:#d97706;--accent2-soft:rgba(217,119,6,.14);--red:#dc2626;--red-soft:rgba(220,38,38,.08);--border:rgba(15,23,42,.08)}'
+  +'.check-item{cursor:pointer;user-select:none;transition:background .15s ease;border-radius:8px;padding:7px 10px;display:flex;gap:10px;align-items:flex-start}'
+  +'.check-item:hover{background:rgba(41,122,46,.06)}'
+  +'.check-item.done{background:var(--accent-soft)}'
+  +'.check-item .box{width:20px;height:20px;border:2px solid var(--accent);border-radius:6px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:background .15s}'
+  +'.check-item.done .box{background:var(--accent)}'
+  +'.check-item.done .lbl{text-decoration:line-through;color:var(--muted)}'
+  +'.tab-btn{cursor:pointer;transition:all .15s ease;border:1px solid var(--border);background:var(--card);border-radius:12px;padding:8px 12px;text-align:center;flex:0 0 auto;min-width:78px}'
+  +'.tab-btn:hover{border-color:var(--accent)}'
+  +'.tab-btn.active{background:var(--accent-soft);border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}'
+  +'.tab-btn .pct{font-size:10px;font-weight:700;color:var(--accent)}'
+  +'.day-card{border:1px solid var(--border);border-radius:12px;background:#fff;transition:border-color .2s}'
+  +'.day-card:hover{border-color:var(--accent)}'
+  +'.bar-track{height:10px;background:rgba(128,128,128,.12);border-radius:99px;overflow:hidden}'
+  +'.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease}'
+  +'.phase-pill{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;white-space:nowrap}'
+  +'.count-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 16px;transition:transform .2s ease,box-shadow .2s ease}'
+  +'.count-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}'
+  +'.count-card .kicker{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}'
+  +'.count-card .big{font-size:34px;font-weight:800;line-height:1;letter-spacing:-.02em}'
+  +'.count-card .unit{font-size:14px;font-weight:600;color:var(--muted);margin-left:4px}';
+  document.head.appendChild(s);
+})();
+</script>
+<div style="background-color:transparent;box-sizing:border-box;">
+<div style="color:var(--text);font-family:'Baloo 2',sans-serif;background:radial-gradient(900px 400px at 15% -5%, var(--accent-soft), transparent 60%), var(--bg);">
+<div class="max-w-5xl mx-auto px-5 py-10">
+
+  <!-- HERO -->
+  <div class="mb-6">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;">
+      <div style="width:46px;height:46px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <div>
+        <p style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;">TTQCS III · HK I · 2026–2027</p>
+        <h1 class="text-2xl md:text-3xl font-extrabold" style="line-height:1.15;letter-spacing:-.01em;">Kế hoạch ôn thi Tiếng Trung — 9 tuần đến cuối kỳ</h1>
+      </div>
+    </div>
+    <p class="text-sm" style="color:var(--muted);max-width:680px;line-height:1.6;">Từ <strong>19/10 (Tuần 9)</strong> đến <strong>tuần thi cuối kỳ (14–20/12)</strong>. Tick từng nhiệm vụ mỗi ngày — thanh tiến độ cập nhật tự động và được lưu trên trình duyệt.</p>
+  </div>
+
+  <!-- COUNTDOWN CARDS (kiểu ảnh bạn gửi) -->
+  <div class="flex flex-wrap gap-3 mb-6">
+    <div class="count-card" style="flex:1 1 170px;border-top:4px solid var(--red);">
+      <div class="kicker" style="color:var(--red);">8/11 · Viết + Nghe GK</div>
+      <div><span class="big" id="cd0">—</span><span class="unit">ngày</span></div>
+    </div>
+    <div class="count-card" style="flex:1 1 170px;border-top:4px solid var(--accent2);">
+      <div class="kicker" style="color:var(--accent2);">26/11 · Vấn đáp GK</div>
+      <div><span class="big" id="cd1">—</span><span class="unit">ngày</span></div>
+    </div>
+    <div class="count-card" style="flex:1 1 170px;border-top:4px solid var(--accent);">
+      <div class="kicker" style="color:var(--accent);">Cuối kỳ (dự kiến ~15/12)</div>
+      <div><span class="big" id="cd2">—</span><span class="unit">ngày</span></div>
+    </div>
+    <div class="count-card" style="flex:1 1 150px;">
+      <div class="kicker" style="color:var(--muted);">Topics</div>
+      <div><span class="big">5</span><span class="unit">bài ~300 chữ</span></div>
+    </div>
+    <div class="count-card" style="flex:1 1 150px;">
+      <div class="kicker" style="color:var(--muted);">Câu HYQ</div>
+      <div><span class="big">~102</span><span class="unit">câu</span></div>
+    </div>
+    <div class="count-card" style="flex:1 1 100%;">
+      <div class="kicker" style="color:var(--muted);">HSK4 tự học</div>
+      <div><span class="big">2→3</span><span class="unit">buổi/tuần · từ bài 13 (2 buổi trước 8/11, đủ 3 buổi sau đó)</span></div>
+    </div>
+  </div>
+
+  <!-- OVERALL PROGRESS -->
+  <div class="rounded-2xl p-5 mb-6" style="background:var(--card);border:1px solid var(--border);">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+      <strong class="text-base">Tiến độ tổng thể</strong>
+      <span class="text-sm" style="color:var(--muted);"><span id="ov-done" class="font-bold" style="color:var(--accent);">0</span> / <span id="ov-total">0</span> nhiệm vụ · <span id="ov-pct" class="font-bold" style="color:var(--accent);">0%</span></span>
+    </div>
+    <div class="bar-track"><div id="ov-bar" class="bar-fill" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:10px;flex-wrap:wrap;gap:8px;" class="text-xs">
+      <span style="color:var(--muted);">Mốc tới: <strong id="next-milestone" style="color:var(--red);">8/11 — thi Viết + Nghe giữa kỳ</strong></span>
+      <button id="reset-btn" style="cursor:pointer;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:4px 12px;font-size:12px;">Đặt lại tiến độ</button>
+    </div>
+  </div>
+
+  <!-- WEEK TABS -->
+  <div id="tabs" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px;"></div>
+
+  <!-- WEEK DETAIL -->
+  <div id="week-detail"></div>
+
+  <div class="rounded-2xl p-4 mt-6 text-xs" style="border:1px solid var(--border);background:var(--accent2-soft);color:var(--text);line-height:1.6;">
+    <strong>Ghi chú:</strong> Số ngày đếm ngược tự động cập nhật theo ngày thực. Ngày thi cuối kỳ dự kiến 15–20/12 — sửa lại khi nhà trường công bố. Phạm vi thi 8/11 ước tính đến Q4 Bài 19, hỏi cô xác nhận. Nếu 1 ngày bận quá, ưu tiên giữ: BTVN nghe (Thứ 3) + chuẩn bị tổng hợp (Thứ 5) + nhiệm vụ trọng tâm của tuần; HSK4/HYQ có thể dời sang ngày khác trong tuần.
+  </div>
+
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+  var DAY_LABELS=['Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7','Chủ nhật'];
+  var WEEKS=[
+    {n:9, start:[2026,9,19], phase:'GĐA · Trước 8/11', pc:'var(--red-soft)', ptc:'var(--red)', topic:'Topic 1 · 请介绍AI对个人生活的影响', unit:'Khối 1: Q3 Bài 7–10', hsk:'Bài 13–14', hyq:6, listen:'Q2 Bài 14+15', zh:'Q4 Bài 17', writeTime:'60p'},
+    {n:10, start:[2026,9,26], phase:'GĐA · Trước 8/11', pc:'var(--red-soft)', ptc:'var(--red)', topic:'Topic 2 · 名胜古迹，你最喜欢哪一处？为什么？', unit:'Khối 2: Q3 Bài 11–13 + Q4 Bài 14–15', hsk:'Bài 15–16', hyq:6, listen:'Q4 Bài 18 (Tổng hợp)', zh:'Q4 Bài 19', writeTime:'60p'},
+    {n:11, start:[2026,10,2], phase:'GĐA · Tuần thi 8/11', pc:'var(--red-soft)', ptc:'var(--red)', topic:'Topic 3 · 请介绍你最喜欢的节日', unit:'Khối 3: Q4 Bài 16–19 + tổng ôn điểm yếu', hsk:'Bài 17–18 (nhẹ)', hyq:5, listen:'Q4 Bài 20 (Tổng hợp)', zh:'Q4 Bài 21', writeTime:'60p', specialDay:{d:6, items:['THI NGHE giữa kỳ (45p) — đọc đề trước khi băng chạy, bình tĩnh','THI VIẾT giữa kỳ (60p) — dàn ý 5p → viết 45p → kiểm tra 10p','Buổi tối nghỉ ngơi hoàn toàn, không ôn thêm']}},
+    {n:12, start:[2026,10,9], phase:'GĐB · Sau 8/11', pc:'var(--accent-soft)', ptc:'var(--accent)', topic:'Topic 4 · 想成为一名"中国通"要学会什么？', unit:null, hsk:'Bài 19–20', hyq:12, listen:'Q2 Bài 16+17', zh:'Q4 Bài 22', writeTime:'75p'},
+    {n:13, start:[2026,10,16], phase:'GĐB · Sau 8/11', pc:'var(--accent-soft)', ptc:'var(--accent)', topic:'Topic 5 · 请介绍你对一门传统艺术的了解', unit:null, hsk:'Bài 21–22', hyq:12, listen:'Q2 Bài 18+19', zh:'Q4 Bài 23', writeTime:'90p'},
+    {n:14, start:[2026,10,23], phase:'Tuần thi vấn đáp', pc:'var(--accent2-soft)', ptc:'var(--accent2)', topic:'Luyện nói lại cả 5 topics (không soạn mới)', unit:null, hsk:'Ôn lại từ cũ (nhẹ)', hyq:0, listen:'Q2 Bài 20+21', zh:'Q4 Bài 24 + Kiểm tra GK', writeTime:'60p', specialDay:{d:4, items:['THI VẤN ĐÁP giữa kỳ (nói topic) — nói chậm, rõ, cấu trúc mở bài–thân–kết bài','Sau thi: nghỉ ngơi, chuẩn bị tâm thế sang cuối kỳ']}},
+    {n:15, start:[2026,10,30], phase:'GĐC · Chuẩn bị cuối kỳ', pc:'var(--accent-soft)', ptc:'var(--accent)', topic:'Viết lại 1–2 topic, cải thiện bài', unit:null, hsk:'Bài 23–24', hyq:17, listen:'Q2 Bài 22+23', zh:'Q4 Bài 25', writeTime:'90p', read:true},
+    {n:16, start:[2026,11,7], phase:'GĐC · Tổng ôn', pc:'var(--accent-soft)', ptc:'var(--accent)', topic:'Viết lại topic yếu + luyện đọc đoạn văn', unit:null, hsk:'Bài 25–26 / ôn tổng', hyq:17, listen:'Q2 Bài 24+25 (hết bài)', zh:'Ôn tổng chương trình', writeTime:'90p', read:true},
+    {n:17, start:[2026,11,14], phase:'Tuần thi cuối kỳ', pc:'var(--accent2-soft)', ptc:'var(--accent2)', topic:'Mô phỏng thi + nghỉ ngơi', unit:null, hsk:'Tạm dừng', hyq:0, listen:'Ôn nghe đề cũ', zh:'—', writeTime:'90p', exam:true}
+  ];
+
+  var KEY='hanStudyPlan_v1';
+  var state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ state={}; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+
+  function fmt(d){ return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2); }
+  function daysTo(iso){ var t=new Date(iso).getTime(), n=new Date().getTime(); return Math.max(0, Math.ceil((t-n)/86400000)); }
+
+  function buildDays(w){
+    var days=[];
+    for(var i=0;i<7;i++){
+      var dt=new Date(w.start[0],w.start[1],w.start[2]+i);
+      var items=[];
+      if(w.specialDay && w.specialDay.d===i){ items=w.specialDay.items.slice(); }
+      else{
+        if(i===0){
+          items.push('HSK4 #1 · Từ vựng '+w.hsk+' + làm bài tập từ vựng (60–75p)');
+          items.push('Ôn nhanh từ mới nghe bài cũ (15p)');
+          if(w.read) items.push('Luyện đọc đoạn văn + trả lời câu hỏi (20p)');
+        } else if(i===1){
+          items.push('Đi học Nghe (Ca 4 · D210) — '+w.listen+' (BTVN phải xong từ Chủ nhật)');
+          items.push('Sau giờ: chép từ mới nghe + hoàn thiện bài tập còn nợ (30p)');
+        } else if(i===2){
+          items.push('HSK4 #2 · Ngữ pháp '+w.hsk+' + bài tập đọc/điền/viết câu (60p)');
+          if(w.hyq>0) items.push('HYQ: học '+w.hyq+' câu mới (tự làm → đối đáp án → đánh dấu câu sai)');
+          if(w.read) items.push('Luyện đọc đoạn văn + trả lời câu hỏi (20p)');
+        } else if(i===3){
+          if(w.exam){ items.push('Ôn tổng HYQ câu nặng + đọc đoạn văn (60p)'); }
+          else { items.push('Chuẩn bị Tổng hợp Thứ 6: học trước từ vựng + ngữ pháp bài '+w.zh+' (40p)'); items.push('Làm bài tập bài cũ (theo yêu cầu cô Ninh) (30p)'); }
+        } else if(i===4){
+          if(w.exam){ items.push('Mô phỏng thi Nghe 45p + Viết 90p (nếu chưa thi)'); items.push('Ngủ sớm, chuẩn bị đồ dùng thi'); }
+          else { items.push('Đi học Tổng hợp (Ca 3 · D213) — '+w.zh); items.push('Sau giờ: chốt từ mới/ngữ pháp, ghi chỗ chưa hiểu (20p)'); }
+        } else if(i===5){
+          if(w.n===14){ items.push('Luyện nói lại 5 topics (mỗi bài <4 phút), thu âm, sửa lỗi (90p)'); items.push('HSK4 nhẹ: ôn lại từ bài cũ (30p)'); }
+          else if(w.exam){ items.push('Mô phỏng thi: Viết 90p + Nói 10 câu HYQ + đọc đoạn (90p)'); items.push('Ôn nhẹ điểm yếu, không học quá muộn'); }
+          else if(w.unit){ items.push('Ôn unit '+w.unit+' (60–90p): che nghĩa nhớ từ → ngữ pháp → làm lại bài tập trọng tâm'); items.push('Soạn + nói '+w.topic+' (60p) → thu âm → sửa lỗi'); }
+          else { items.push('HSK4 #3: luyện nói + viết nhật ký 100–150 chữ (60p)'); items.push((w.read?'Viết lại 1 topic 300 chữ (90p) hoặc luyện đọc đoạn văn':'Soạn + nói '+w.topic+' (90p) → thu âm → sửa')); if(w.hyq>12) items.push('Nhẩm lại HYQ câu nặng (20p)'); }
+        } else {
+          items.push('Luyện nghe 1 bài 45p + chép từ sai vào sổ');
+          items.push('Viết tay '+w.writeTime+' (theo topic/đề mẫu) — tính giờ');
+          if(w.unit) items.push('Ôn nhanh '+w.unit+' đã học trong tuần (30p)');
+          if(w.hyq>0) items.push('Nhẩm lại HYQ tuần đã học (15p)');
+          items.push('Làm BTVN nghe cho Thứ 3 tuần sau + lập kế hoạch tuần sau (15p)');
+        }
+      }
+      days.push({label:DAY_LABELS[i], date:fmt(dt), items:items, exam: w.specialDay && w.specialDay.d===i});
+    }
+    return days;
+  }
+
+  var TOTALS=WEEKS.map(function(w){ return buildDays(w).reduce(function(s,d){return s+d.items.length;},0); });
+  var TOTAL_ALL=TOTALS.reduce(function(a,b){return a+b;},0);
+
+  function weekDone(n){ var c=0, p='w'+n+'_'; for(var k in state) if(state[k] && k.indexOf(p)===0) c++; return c; }
+  function allDone(){ var c=0; for(var k in state) if(state[k]) c++; return c; }
+
+  var active=0;
+  try{ active=parseInt(localStorage.getItem(KEY+'_tab')||'0',10)||0; }catch(e){}
+
+  function renderTabs(){
+    var el=document.getElementById('tabs'); if(!el) return;
+    var html='';
+    WEEKS.forEach(function(w,i){
+      var done=weekDone(w.n), pct=Math.round(done/TOTALS[i]*100);
+      var dt=new Date(w.start[0],w.start[1],w.start[2]);
+      html+='<div class="tab-btn'+(i===active?' active':'')+'" data-tab="'+i+'">'
+        +'<div style="font-weight:800;font-size:14px;">T'+w.n+'</div>'
+        +'<div style="font-size:10px;color:var(--muted);">'+fmt(dt)+'</div>'
+        +'<div class="pct">'+pct+'%</div></div>';
+    });
+    el.innerHTML=html;
+  }
+
+  function renderWeek(){
+    var el=document.getElementById('week-detail'); if(!el) return;
+    var w=WEEKS[active], days=buildDays(w);
+    var done=weekDone(w.n), pct=Math.round(done/TOTALS[active]*100);
+    var dt0=new Date(w.start[0],w.start[1],w.start[2]);
+    var dt1=new Date(w.start[0],w.start[1],w.start[2]+6);
+    var banner='';
+    if(w.n===11) banner='<div style="background:var(--red-soft);border:1px solid var(--red);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;"><strong style="color:var(--red);">Chủ nhật 8/11: THI Viết 60p + Nghe 45p giữa kỳ.</strong> Thứ 7 chỉ ôn nhẹ điểm yếu, không học bài mới.</div>';
+    if(w.n===14) banner='<div style="background:var(--accent2-soft);border:1px solid var(--accent2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;"><strong style="color:var(--accent2);">Thứ 6 26/11: THI VẤN ĐÁP giữa kỳ.</strong> Tuần này chỉ luyện nói lại 5 topics cho trôi, HYQ tạm dừng.</div>';
+    if(w.exam) banner='<div style="background:var(--accent2-soft);border:1px solid var(--accent2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;"><strong style="color:var(--accent2);">Tuần thi cuối kỳ (dự kiến 15–20/12).</strong> Xác nhận lịch thi chính thức. Mô phỏng thi 1–2 lần, ngủ sớm, giảm tải.</div>';
+    var html='<div class="rounded-2xl p-5" style="background:var(--card);border:1px solid var(--border);">'
+      +'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px;">'
+      +'<h2 class="text-lg font-extrabold">Tuần '+w.n+' · '+fmt(dt0)+' – '+fmt(dt1)+'</h2>'
+      +'<span class="phase-pill" style="background:'+w.pc+';color:'+w.ptc+';">'+w.phase+'</span></div>'
+      +'<p class="text-xs mb-3" style="color:var(--muted);line-height:1.5;">Trọng tâm tuần: <strong style="color:var(--text);">'+w.topic+'</strong>'+(w.unit?' · Ôn '+w.unit:'')+(w.hyq>0?' · HYQ '+w.hyq+' câu':'')+'</p>'
+      +banner
+      +'<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;" class="text-xs"><span style="color:var(--muted);">Tiến độ tuần này</span><span><strong style="color:var(--accent);">'+done+'/'+TOTALS[active]+'</strong> · <strong style="color:var(--accent);">'+pct+'%</strong></span></div>'
+      +'<div class="bar-track mb-5"><div class="bar-fill" style="width:'+pct+'%"></div></div>'
+      +'<div style="display:flex;flex-direction:column;gap:8px;">';
+    days.forEach(function(d,di){
+      html+='<div class="day-card p-3.5"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">'
+        +'<span class="text-sm font-bold px-2 py-0.5 rounded-lg" style="background:'+(d.exam?'var(--red-soft)':'var(--accent-soft)')+';color:'+(d.exam?'var(--red)':'var(--accent)')+';">'+d.label+'</span>'
+        +'<span class="text-xs" style="color:var(--muted);">'+d.date+(d.exam?' · NGÀY THI':'')+'</span></div>'
+        +'<div style="display:flex;flex-direction:column;gap:1px;" class="text-sm">';
+      d.items.forEach(function(it,ii){
+        var id='w'+w.n+'_'+di+'_'+ii, dn=!!state[id];
+        html+='<div class="check-item'+(dn?' done':'')+'" data-id="'+id+'">'
+          +'<span class="box">'+(dn?'<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>':'')+'</span>'
+          +'<span class="lbl" style="line-height:1.5;">'+it+'</span></div>';
+      });
+      html+='</div></div>';
+    });
+    html+='</div></div>';
+    el.innerHTML=html;
+  }
+
+  function renderOverall(){
+    var d=allDone(), pct=Math.round(d/TOTAL_ALL*100);
+    var a=document.getElementById('ov-done'); if(a) a.textContent=d;
+    var b=document.getElementById('ov-total'); if(b) b.textContent=TOTAL_ALL;
+    var c=document.getElementById('ov-pct'); if(c) c.textContent=pct+'%';
+    var bar=document.getElementById('ov-bar'); if(bar) bar.style.width=pct+'%';
+    var now=new Date();
+    var m=document.getElementById('next-milestone');
+    if(m){
+      if(now < new Date(2026,10,8)){ m.textContent='8/11 — thi Viết + Nghe giữa kỳ'; m.style.color='var(--red)'; }
+      else if(now < new Date(2026,10,26)){ m.textContent='26/11 — thi Vấn đáp giữa kỳ'; m.style.color='var(--accent2)'; }
+      else { m.textContent='Cuối kỳ (dự kiến 15–20/12) — xác nhận lịch chính thức'; m.style.color='var(--accent)'; }
+    }
+    // countdown cards
+    var c0=document.getElementById('cd0'); if(c0) c0.textContent=daysTo('2026-11-08T00:00:00+07:00');
+    var c1=document.getElementById('cd1'); if(c1) c1.textContent=daysTo('2026-11-26T00:00:00+07:00');
+    var c2=document.getElementById('cd2'); if(c2) c2.textContent=daysTo('2026-12-15T00:00:00+07:00');
+  }
+
+  function renderAll(){ renderTabs(); renderWeek(); renderOverall(); }
+
+  document.addEventListener('click', function(e){
+    var tab=e.target.closest('[data-tab]');
+    if(tab){ active=parseInt(tab.getAttribute('data-tab'),10); try{localStorage.setItem(KEY+'_tab',active);}catch(err){} renderAll(); return; }
+    var item=e.target.closest('.check-item');
+    if(item){ var id=item.getAttribute('data-id'); state[id]=!state[id]; if(!state[id]) delete state[id]; save(); renderAll(); return; }
+    if(e.target.id==='reset-btn'){ if(confirm('Xóa toàn bộ tiến độ đã tick?')){ state={}; save(); renderAll(); } }
+  });
+
+  renderAll();
+})();
+</script>
+</html>
